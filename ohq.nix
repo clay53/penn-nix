@@ -1,5 +1,5 @@
 { nixpkgs }: {
-  devShells.x86_64-linux.ohq-backend =
+  devShells.x86_64-linux.ohq =
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
     in

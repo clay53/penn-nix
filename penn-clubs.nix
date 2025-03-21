@@ -1,5 +1,5 @@
 { nixpkgs }: {
-  devShells.x86_64-linux.penn-clubs-backend =
+  devShells.x86_64-linux.penn-clubs =
     let
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
     in
