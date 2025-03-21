@@ -25,13 +25,13 @@
     "waypoint-client-bin-x86_64-linux": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-Cunm0BfhL2qG8dsLias+yc0lHzDbBHldTK7LQhEQpJ0=",
+        "narHash": "sha256-Sv9Zpwd0c3zd86D5EFn7MYJqErZgsd1Zqiz7tZSKZNs=",
         "type": "file",
-        "url": "https://github.com/pennlabs/infrastructure/releases/download/v0.0.2.11/waypoint-client-linux-x86_64"
+        "url": "https://github.com/pennlabs/infrastructure/releases/download/v1.0.3/waypoint-client-linux-x86_64"
       },
       "original": {
         "type": "file",
-        "url": "https://github.com/pennlabs/infrastructure/releases/download/v0.0.2.11/waypoint-client-linux-x86_64"
+        "url": "https://github.com/pennlabs/infrastructure/releases/download/v1.0.3/waypoint-client-linux-x86_64"
       }
     }
   },

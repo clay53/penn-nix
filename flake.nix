@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     waypoint-client-bin-x86_64-linux = {
-      url = "https://github.com/pennlabs/infrastructure/releases/download/v0.0.2.11/waypoint-client-linux-x86_64";
+      url = "https://github.com/pennlabs/infrastructure/releases/download/v1.0.3/waypoint-client-linux-x86_64";
       flake = false;
     };
   };
