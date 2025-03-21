@@ -18,20 +18,7 @@
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs",
-        "waypoint-client-bin-x86_64-linux": "waypoint-client-bin-x86_64-linux"
-      }
-    },
-    "waypoint-client-bin-x86_64-linux": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-Sv9Zpwd0c3zd86D5EFn7MYJqErZgsd1Zqiz7tZSKZNs=",
-        "type": "file",
-        "url": "https://github.com/pennlabs/infrastructure/releases/download/v1.0.3/waypoint-client-linux-x86_64"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://github.com/pennlabs/infrastructure/releases/download/v1.0.3/waypoint-client-linux-x86_64"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

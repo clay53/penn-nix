@@ -3,10 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    waypoint-client-bin-x86_64-linux = {
-      url = "https://github.com/pennlabs/infrastructure/releases/download/v1.0.3/waypoint-client-linux-x86_64";
-      flake = false;
-    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
@@ -37,7 +33,7 @@
           outputs;
     in
     mergeOutputs [
-      (import ./waypoint-client.nix { inherit nixpkgs; x86_64-linux-bin = inputs.waypoint-client-bin-x86_64-linux; })
+      (import ./waypoint-client.nix { inherit nixpkgs; })
       (import ./penn-clubs.nix { inherit nixpkgs; })
       (import ./platform.nix { inherit nixpkgs; })
       (import ./penn-courses.nix { inherit nixpkgs; })
