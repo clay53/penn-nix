@@ -1,17 +1,25 @@
 {
-  stdenv,
+  stdenvNoCC,
   autoPatchelfHook,
   libz,
   fetchurl,
   ...
 }:
-stdenv.mkDerivation rec {
-  name = "waypoint-client";
+let
+  platform =
+    {
+      x86_64-linux = "linux-x86_64";
+      x86_64-darwin = "macos-x86_64";
+      aarch64-darwin = "arm64-apple-darwin";
+    }
+    .${stdenvNoCC.system} or (throw "unsupported system ${stdenvNoCC.system}");
+in
+stdenvNoCC.mkDerivation rec {
   pname = "waypoint-client";
   version = "1.0.3";
 
   src = fetchurl {
-    url = "https://github.com/pennlabs/infrastructure/releases/download/v${version}/waypoint-client-linux-x86_64";
+    url = "https://github.com/pennlabs/infrastructure/releases/download/v${version}/waypoint-client-${platform}";
     hash = "sha256-YAA9wH7NcN1u9dDsm3QbidnHGVey5zAqfF7aajFSQ3M=";
   };
   dontUnpack = true;
