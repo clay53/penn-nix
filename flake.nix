@@ -3,41 +3,25 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
-    let
-      mergeSystems = oldSystems: newSystems:
-        builtins.foldl'
-          (acc: systemName: {
-            ${systemName} =
-              if acc ? ${systemName}
-              then acc.${systemName} // newSystems.${systemName}
-              else newSystems.${systemName};
-          })
-          oldSystems
-          (builtins.attrNames newSystems);
-      mergeOutputs = outputs:
-        builtins.foldl'
-          (acc: output: {
-            packages =
-              if output ? packages
-              then mergeSystems acc.packages output.packages
-              else acc.packages;
-            devShells =
-              if output ? devShells
-              then mergeSystems acc.devShells output.devShells
-              else acc.devShells;
-          })
-          { packages = {}; devShells = {}; }
-          outputs;
-    in
-    mergeOutputs [
-      (import ./waypoint-client.nix { inherit nixpkgs; })
-      (import ./penn-clubs.nix { inherit nixpkgs; })
-      (import ./platform.nix { inherit nixpkgs; })
-      (import ./penn-courses.nix { inherit nixpkgs; })
-      (import ./ohq.nix { inherit nixpkgs; })
-      (import ./penn-mobile.nix { inherit nixpkgs; })
-    ];
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        packages = {
+            waypoint-client = import ./waypoint-client.nix pkgs;
+        };
+        devShells = {
+          penn-clubs = import ./penn-clubs/shell.nix pkgs;
+          platform = import ./platform/shell.nix pkgs;
+          penn-courses = import ./penn-courses/shell.nix pkgs;
+          ohq = import ./ohq/shell.nix pkgs;
+          penn-mobile = import ./penn-mobile/shell.nix pkgs;
+        };
+      }
+    );
 }
