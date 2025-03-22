@@ -1,8 +1,8 @@
 {
   stdenvNoCC,
   autoPatchelfHook,
-  libz,
   fetchurl,
+  libgcc,
   ...
 }:
 let
@@ -15,7 +15,7 @@ let
     .${stdenvNoCC.system} or (throw "unsupported system ${stdenvNoCC.system}");
   hash =
     {
-      x86_64-linux = "sha256-YAA9wH7NcN1u9dDsm3QbidnHGVey5zAqfF7aajFSQ3M=";
+      x86_64-linux = "sha256-ABuHoMLqZCo8damMavPoUoqkc9Vg5lPPIT78yaqkoCg=";
       x86_64-darwin = "sha256-YAA9wH7NcN1u9dDsm3QbidnHGVey5zAqfF7aajFSQ3M=";
       aarch64-darwin = "sha256-YAA9wH7NcN1u9dDsm3QbidnHGVey5zAqfF7aajFSQ3M=";
     }
@@ -29,18 +29,17 @@ stdenvNoCC.mkDerivation rec {
     url = "https://github.com/astral-sh/uv/releases/download/${version}/uv-${platform}.tar.gz";
     inherit hash;
   };
-  dontUnpack = true;
+  sourceRoot = ".";
 
   nativeBuildInputs = [
     autoPatchelfHook
-    libz
+    libgcc
   ];
 
   installPhase = ''
     mkdir -p $out/bin
-    cp $src/uv $out/bin/uv
-    cp $src/uvx $out/bin/uvx
-    chmod +x $out/bin/uv
-    chmod +x $out/bin/uvx
+    ls .
+    cp -r uv-${platform}/. $out/bin/
+    chmod +x $out/bin/.
   '';
 }

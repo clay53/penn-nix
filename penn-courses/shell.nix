@@ -1,13 +1,13 @@
 {
   buildFHSEnv,
-  uv,
+  uv-bin,
   libz,
   ...
 }:
 (buildFHSEnv {
   name = "pennlabs-penn-courses";
   targetPkgs = pkgs: [
-    uv
+    uv-bin
     libz
   ];
 }).env
