@@ -7,6 +7,7 @@
 }:
 stdenv.mkDerivation rec {
   name = "waypoint-client";
+  pname = "waypoint-client";
   version = "1.0.3";
 
   src = fetchurl {
