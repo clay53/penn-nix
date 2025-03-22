@@ -13,7 +13,7 @@
       in
       {
         packages = {
-            waypoint-client = import ./waypoint-client.nix pkgs;
+          waypoint-client = import ./waypoint-client.nix pkgs;
         };
         devShells = {
           penn-clubs = import ./penn-clubs/shell.nix pkgs;
