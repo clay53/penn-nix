@@ -6,8 +6,14 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
       in
@@ -22,6 +28,7 @@
           ohq = import ./ohq/shell.nix pkgs;
           penn-mobile = import ./penn-mobile/shell.nix pkgs;
         };
+        formatter = pkgs.nixfmt-rfc-style;
       }
     );
 }
